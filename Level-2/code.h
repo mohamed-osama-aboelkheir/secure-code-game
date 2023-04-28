@@ -48,6 +48,9 @@ bool update_setting(user_account* ua, const char *index, const char *value) {
         return false;
     if (i >= SETTINGS_COUNT)
         return false;
+	// negative index values can overwrite other properties of the struct
+	if (i < 0)
+        return false;
     v = strtol(value, &endptr, 10);
     if (*endptr)
         return false;
